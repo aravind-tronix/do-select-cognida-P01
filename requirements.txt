@@ -1,13 +1,14 @@
 boto3
 dnspython
 fastapi
+fastapi[standard]
 httpx
 isort
 mangum
+pre-commit
 pyparsing
 pytest
 pytest-asyncio
 python-dotenv
 python-jose
 requests
-fastapi[standard]

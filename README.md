@@ -63,7 +63,12 @@ The reason for slecting FastAPI is, it is
 - run the test coverage by
   `pytest --cov`
 
-## API specs
+## API specs - AWS (manual hosting)
 
 API specs can be found on
-http://0.0.0.0:8000/docs
+https://2lx003f6l5.execute-api.us-east-1.amazonaws.com/dev/api/v1/docs#/
+
+- the app is hosted on AWS lambda
+- the core_services are converted into lambda layers
+- other services are uploaded to lambda functions
+- the lambda is invoked by API gateway.

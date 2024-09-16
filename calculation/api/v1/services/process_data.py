@@ -68,7 +68,12 @@ async def process_data(data: dict):
             result = await evaluate_expression(expression, data_entry)
             temp_results[formula["outputVar"]] = result
             results[formula["outputVar"]].append(result)
-
+    if len(data["formulas"]) > 1:
+        return {
+            "results": results,
+            "status": "success",
+            "message": "The formulas were executed successfully with variable-based chaining.",
+        }
     return {
         "results": results,
         "status": "success",

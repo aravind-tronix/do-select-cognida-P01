@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 
-from calculation.api.v1.models.request_models import CalculationRequest
-from calculation.api.v1.models.response_model import CalculationResponse
-from calculation.api.v1.services.process_data import process_data
+from app.calculation.api.v1.models.request_models import CalculationRequest
+from app.calculation.api.v1.models.response_model import CalculationResponse
+from app.calculation.api.v1.services.process_data import process_data
 
 router = APIRouter()
 

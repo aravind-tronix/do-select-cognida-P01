@@ -7,6 +7,7 @@ async def find_value(data, field):
             return entry[field]
     return None
 
+
 # Function to evaluate the sumResult based on the input data
 
 
@@ -14,7 +15,7 @@ async def evaluate_expression(expression, data):
     stack = []
 
     for token, token_type in expression:
-        if token_type == 'operand':
+        if token_type == "operand":
             if token.isnumeric():
                 # If the operand is a number, push it as integer
                 stack.append(int(token))
@@ -25,18 +26,18 @@ async def evaluate_expression(expression, data):
                     stack.append(value)
                 else:
                     raise ValueError(f"Value for {token} not found in data.")
-        elif token_type == 'operator':
+        elif token_type == "operator":
             # Apply the operator
             if len(stack) >= 2:
                 b = stack.pop()
                 a = stack.pop()
-                if token == '+':
+                if token == "+":
                     stack.append(a + b)
-                elif token == '-':
+                elif token == "-":
                     stack.append(a - b)
-                elif token == '*':
+                elif token == "*":
                     stack.append(a * b)
-                elif token == '/':
+                elif token == "/":
                     stack.append(a / b)
                 else:
                     raise ValueError(f"Unsupported operator {token}")
@@ -51,34 +52,34 @@ async def split_and_identify(expression, data):
     for formulas in expression:
         # print(formulas)
         # Regular expression pattern to split based on arithmetic operators and parentheses
-        pattern = r'([\+\-\*/\(\)])'
+        pattern = r"([\+\-\*/\(\)])"
 
         # Split the expression
         for token in re.split(pattern, formulas.get("expression")):
             # print(token, formulas.get('outputVar'))
             stripped_token = token.strip()
             if stripped_token:
-                exp.update({formulas.get('outputVar'): []})
-                tokens.append({stripped_token: formulas.get('outputVar')})
-                exp.update({formulas.get('outputVar'): []})
-    # print(tokens)
-    # for d in tokens:
-    #     s = list(d.keys())
-    #     print(s[0])
-    # Identify whether each token is an operator or operand
+                exp.update({formulas.get("outputVar"): []})
+                tokens.append({stripped_token: formulas.get("outputVar")})
+                exp.update({formulas.get("outputVar"): []})
+        # print(tokens)
+        # for d in tokens:
+        #     s = list(d.keys())
+        #     print(s[0])
+        # Identify whether each token is an operator or operand
         result = []
         res = {}
-        operators = {'+', '-', '*', '/', '(', ')'}
+        operators = {"+", "-", "*", "/", "(", ")"}
     print(tokens)
     for values in tokens:
         token = list(values.keys())
         print(token[0])
         if token[0] in operators:
-            result.append((token[0], 'operator'))
-            res.update({token[0]: 'operator'})
-        elif token[0] not in {'(', ')'}:  # Ignore parentheses
-            result.append((token[0], 'operand'))
-            res.update({token[0]: 'operand'})
+            result.append((token[0], "operator"))
+            res.update({token[0]: "operator"})
+        elif token[0] not in {"(", ")"}:  # Ignore parentheses
+            result.append((token[0], "operand"))
+            res.update({token[0]: "operand"})
     print(res)
     # exp.update({formulas.get("outputVar"): result})
 

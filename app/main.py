@@ -1,8 +1,9 @@
-from fastapi import Depends, FastAPI, Request, APIRouter
-from core_services.v1.services import resource
-from starlette.middleware.cors import CORSMiddleware
+from fastapi import APIRouter, FastAPI, Request
 from mangum import Mangum
-import calculation.api.v1.routes.api as calculation_route
+from starlette.middleware.cors import CORSMiddleware
+
+import app.calculation.api.v1.routes.api as calculation_route
+from app.core_services.v1.services import resource
 
 lambdaPaths = resource.resources()
 
@@ -48,6 +49,7 @@ async def add_cors_header(request: Request, call_next):
 @app.get("/")
 async def default():
     return {"message": "visit /docs for swagger"}
+
 
 app.include_router(router)
 app.include_router(calculation_route.router)

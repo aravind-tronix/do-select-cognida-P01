@@ -3,7 +3,11 @@ from datetime import datetime, timedelta
 
 from fastapi.encoders import jsonable_encoder
 
-from calculation.api.v1.services.parsers import parse_currency, parse_datetime, parse_percentage
+from app.calculation.api.v1.services.parsers import (
+    parse_currency,
+    parse_datetime,
+    parse_percentage,
+)
 
 
 def process_variables(entry: dict, var_type: str, var_name: str, data_entry: str):

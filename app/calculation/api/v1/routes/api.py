@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from calculation.api.v1.endpoints import calculations
+from app.calculation.api.v1.endpoints import calculations
 
 router = APIRouter()
 
